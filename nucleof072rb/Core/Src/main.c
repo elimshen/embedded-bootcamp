@@ -19,6 +19,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -65,8 +67,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	const int MAX_READING =1023;//max ADC value
-	const int PWM_MIN = 3276;
+	const uint16_t MAX_READING =1023;//max ADC value
+	const uint16_t PWM_MIN = 3276;
 	uint16_t reading = 0;
 	uint16_t angle_pwm;//angle for servo motor
 	uint8_t transmit_buffer[3]={1,1,0};//the potentiometer is single mode (1)
@@ -95,6 +97,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART2_UART_Init();
+  MX_SPI1_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   /* USER CODE END 2 */
