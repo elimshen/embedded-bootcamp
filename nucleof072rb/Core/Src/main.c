@@ -108,7 +108,7 @@ int main(void)
   while (1)
   {
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8,GPIO_PIN_RESET);//set ADC pins to low
-	HAL_SPI_TransmitReceive(&hspi,p_tx_data,p_rx_data,3, HAL_MAX_DELAY);
+	HAL_SPI_TransmitReceive(&hspi1,p_tx_data,p_rx_data,3, HAL_MAX_DELAY);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8,GPIO_PIN_SET);
 
 	reading=((p_rx_data[1] & mask_2bit)<<8)+p_rx_data[2];//gets rid of first 10 bits, shifts up 8 digits, adds second part of reading
